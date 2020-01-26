@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  worker:
+    build:
+      context: .
+    depends_on:
+      - db
+
+  db:
+    image: postgres:11
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: '123'
+      POSTGRES_DB: 'db'
+      POSTGRES_USER: 'postgres'
+
+volumes:
+  dbdata:
